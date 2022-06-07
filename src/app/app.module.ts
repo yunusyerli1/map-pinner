@@ -2,14 +2,27 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { MapContainerComponent } from './map-container/map-container.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AppComponent } from './app.component';
+import { MapContainerComponent } from './components/map-container/map-container.component';
+
+import { HomeComponent } from './home/home.component';
+import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { CardItemComponent } from './components/sidebar/card-item/card-item.component';
+import { CardDetailComponent } from './components/sidebar/card-detail/card-detail.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MapContainerComponent
+    MapContainerComponent,
+    HomeComponent,
+    NotFoundPageComponent,
+    SidebarComponent,
+    CardItemComponent,
+    CardDetailComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,

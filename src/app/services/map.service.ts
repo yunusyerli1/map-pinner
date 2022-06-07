@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BaseService } from './base.service';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { Observable } from 'rxjs/internal/Observable';
 
 
 @Injectable({
@@ -8,11 +10,31 @@ import { BaseService } from './base.service';
 })
 export class MapService {
 
-  constructor(private http: HttpClient,private baseService:BaseService) {}
+  LIST:any;
+  isDataLoading: BehaviorSubject<boolean>;
+
+  constructor(private http: HttpClient,private baseService:BaseService) {
+    this.isDataLoading = new BehaviorSubject<boolean>(false);
+  }
+  setValue(newValue): void {
+    this.isDataLoading.next(newValue);
+  }
+  getValue(): Observable<boolean> {
+    return this.isDataLoading.asObservable();
+  }
 
   public async getList(): Promise<any> {
-    const PATH= 'https://mapbox-2645c-default-rtdb.firebaseio.com/listing.json';
-    return await this.baseService.sendGetRequest(PATH)
+    if (this.LIST != undefined) {
+      return this.LIST;
+    } else {
+      this.isDataLoading.next(true);
+      const PATH= 'https://app.smartapartmentdata.com/List/json/listItems.aspx?listID=5363950&token=5AE7DFB40500DDC03BC84BD3F0A8AC0F18784B1E&receipt=undefined';
+      this.LIST = await this.baseService.sendGetRequest(PATH);
+      this.isDataLoading.next(false);
+      return this.LIST;
+    }
+
+
   }
 
   public async getMapInfo(): Promise<any> {
