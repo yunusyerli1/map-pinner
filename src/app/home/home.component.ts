@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MapService } from '../services/map.service';
 
 @Component({
@@ -10,9 +10,13 @@ export class HomeComponent implements OnInit {
 
 isLoading:boolean = false;
 
-  constructor(private mapService: MapService) {
+  constructor(private mapService: MapService,private ref: ChangeDetectorRef) {
 
     //this.isLoading = this.mapService.isDataLoading;
+  }
+
+  ngAfterContentChecked() {
+    this.ref.detectChanges();
   }
 
   ngOnInit(): void {
