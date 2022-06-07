@@ -17,15 +17,14 @@ export class MapContainerComponent implements OnInit {
 
   map: mapboxgl.Map;
   style = 'mapbox://styles/mapbox/streets-v11';
-  lat = 33.9635;
-  lng = 39.159;
-  zoom = 4;
+  lat = 32.71511592010708;
+  lng = -97.40416574486872;
+  zoom = 12;
 
   source:any;
   markers:any;
 
   DATA:any;
-  MAP_DETAIL:any;
 
   geojson = {
     type: 'FeatureCollection',
@@ -66,17 +65,15 @@ export class MapContainerComponent implements OnInit {
   }
 
   async getData() {
-    this.MAP_DETAIL = await this.mapService.getMapInfo();
     this.DATA = await this.mapService.getList();
     console.log(this.DATA);
-    console.log(this.MAP_DETAIL);
   }
 
   initMap() {
     this.map = new mapboxgl.Map({
       container: 'map',
-      center: this.MAP_DETAIL?.center,
-      zoom: this.MAP_DETAIL?.zoom,
+      center: [this.lng, this.lat],
+      zoom: this.zoom,
       style: this.style,
     })
 

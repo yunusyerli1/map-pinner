@@ -27,19 +27,14 @@ export class MapService {
     if (this.LIST != undefined) {
       return this.LIST;
     } else {
-      this.isDataLoading.next(true);
+      this.setValue(true);
       const PATH= 'https://app.smartapartmentdata.com/List/json/listItems.aspx?listID=5363950&token=5AE7DFB40500DDC03BC84BD3F0A8AC0F18784B1E&receipt=undefined';
       this.LIST = await this.baseService.sendGetRequest(PATH);
-      this.isDataLoading.next(false);
+      this.setValue(false);
       return this.LIST;
     }
 
 
-  }
-
-  public async getMapInfo(): Promise<any> {
-    const PATH= 'https://mapbox-2645c-default-rtdb.firebaseio.com/mapInfo.json';
-    return await this.baseService.sendGetRequest(PATH)
   }
 
 
