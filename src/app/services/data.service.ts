@@ -5,14 +5,15 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from 'src/environments/environment';
 
-
 @Injectable({
   providedIn: 'root'
 })
-export class MapService {
+export class DataService {
 
   LIST:any;
   isDataLoading: BehaviorSubject<boolean>;
+
+
 
 
   constructor(private http: HttpClient,private baseService:BaseService) {
@@ -44,6 +45,4 @@ export class MapService {
       this.setValue(false);
       return this.LIST;
   }
-
 }
-

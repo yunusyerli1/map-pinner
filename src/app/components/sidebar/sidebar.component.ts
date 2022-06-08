@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MapService } from 'src/app/services/map.service';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,10 +10,10 @@ export class SidebarComponent implements OnInit {
 
   DATA:any;
 
-  constructor(private mapService: MapService) { }
+  constructor(private dataService: DataService,) { }
 
   ngOnInit(): void {
-    this.DATA = this.mapService.LIST;
+    this.DATA = this.dataService.LIST;
   }
 
   goDetail(property_id:number) {

@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { MapService } from '../services/map.service';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-home',
@@ -10,9 +10,7 @@ export class HomeComponent implements OnInit {
 
 isLoading:boolean = false;
 
-  constructor(private mapService: MapService,private ref: ChangeDetectorRef) {
-
-    //this.isLoading = this.mapService.isDataLoading;
+  constructor(private dataService: DataService,private ref: ChangeDetectorRef) {
   }
 
   ngAfterContentChecked() {
@@ -21,14 +19,14 @@ isLoading:boolean = false;
 
   ngOnInit(): void {
 
-    this.mapService.getValue().subscribe((value) => {
+    this.dataService.getValue().subscribe((value) => {
       this.isLoading = value;
     });
     this.getData();
   }
 
   public async getData() {
-     await this.mapService.getList();
+     await this.dataService.getList();
   }
 
 }
