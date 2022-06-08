@@ -16,6 +16,7 @@ import { DataService } from 'src/app/services/data.service';
 export class MapContainerComponent implements OnInit {
 
   DATA:any;
+  ZOOM:number= 16;
 
   geojson = {
     type: 'FeatureCollection',
@@ -63,23 +64,21 @@ export class MapContainerComponent implements OnInit {
      // create a HTML element for each feature
      let el = this.renderer.createElement('div');
      this.renderer.addClass(el, 'marker' );
-     console.log(feature)
      // make a marker for each feature and add to the map
-     let arr= [feature.geocode.Longitude, feature.geocode.Latitude];
+     let arr= [feature?.geocode?.Longitude, feature?.geocode?.Latitude];
      let pinnedMap = new mapboxgl.Marker(el).setLngLat(arr).addTo(this.mapboxService.map);
      this.renderer.listen(el, 'click', (evt) => {
        pinnedMap.setPopup(
            new mapboxgl.Popup({ offset: 25 }) // add popups
              .setHTML(
                `<div style="padding:0.1rem 0.5rem;">
-               <h5>${feature.name}</h5>
-               <img src="${feature.photo}" width="200px"><br>
-               <span>${feature.city}, ${feature.state}</span>
-               <p>${feature.streetAddress}</p>
+               <h5>${feature?.name}</h5>
+               <img src="${feature?.photo}" width="200px"><br>
+               <span>${feature?.city}, ${feature?.state}</span>
+               <p>${feature?.streetAddress}</p>
                </div>`
              )).addTo(this.mapboxService.map);
-             this.mapboxService.map.flyTo({center: [feature.geocode.Longitude, feature.geocode.Latitude], zoom: 16});
-             console.log(evt)
+             this.mapboxService.map.flyTo({center: arr, zoom: this.ZOOM});
        });
    }
  }

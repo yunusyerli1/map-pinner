@@ -18,15 +18,13 @@ isLoading:boolean = false;
   }
 
   ngOnInit(): void {
-
-    this.dataService.getValue().subscribe((value) => {
-      this.isLoading = value;
-    });
     this.getData();
   }
 
   public async getData() {
+    this.isLoading = true;
      await this.dataService.getList();
+     this.isLoading = false;
   }
 
 }

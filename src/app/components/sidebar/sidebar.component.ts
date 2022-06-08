@@ -13,11 +13,13 @@ export class SidebarComponent implements OnInit {
   constructor(private dataService: DataService,) { }
 
   ngOnInit(): void {
-    this.DATA = this.dataService.LIST;
+    this.getData();
+    //this.DATA = this.dataService.LIST;
   }
 
-  goDetail(property_id:number) {
-    console.log(property_id)
+  async getData() {
+    this.DATA =  await this.dataService.getList();
+    console.log("List", this.DATA)
   }
 
 }
