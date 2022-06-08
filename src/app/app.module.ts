@@ -10,8 +10,8 @@ import { HomeComponent } from './home/home.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CardItemComponent } from './components/sidebar/card-item/card-item.component';
-import { CardDetailComponent } from './components/sidebar/card-detail/card-detail.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { SidebarDetailComponent } from './components/sidebar-detail/sidebar-detail.component';
 
 @NgModule({
   declarations: [
@@ -21,8 +21,8 @@ import { LoadingComponent } from './components/loading/loading.component';
     NotFoundPageComponent,
     SidebarComponent,
     CardItemComponent,
-    CardDetailComponent,
     LoadingComponent,
+    SidebarDetailComponent,
   ],
   imports: [
     BrowserModule,

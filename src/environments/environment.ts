@@ -7,7 +7,9 @@ export const environment = {
   mapbox:{
     accessToken: 'pk.eyJ1IjoieXVudXN5ZXJsaTEiLCJhIjoiY2toYWQ2bDduMGFybjJ0cnN1aW5mbXZvOCJ9.cOo-CPzzjyKcYy-ZJPmYpA'
   },
-  mapTiler:'SoL71Zyf7SmLrVYWC7fQ'
+  mapTiler:'SoL71Zyf7SmLrVYWC7fQ',
+  path:'https://app.smartapartmentdata.com/List/json',
+  style_path:'https://api.maptiler.com/maps/eef16200-c4cc-4285-9370-c71ca24bb42d/style.json?key=SoL71Zyf7SmLrVYWC7fQ'
 };
 
 /*

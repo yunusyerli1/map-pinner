@@ -9,20 +9,15 @@ import { MapService } from 'src/app/services/map.service';
 export class SidebarComponent implements OnInit {
 
   DATA:any;
-  hasDetailClicked:boolean = false;
 
   constructor(private mapService: MapService) { }
 
   ngOnInit(): void {
-    this.getData();
+    this.DATA = this.mapService.LIST;
   }
 
-  public async getData() {
-    this.DATA = await this.mapService.getList();
-  }
-
-  changeDetail() {
-    this.hasDetailClicked = true;
+  goDetail(property_id:number) {
+    console.log(property_id)
   }
 
 }

@@ -16,7 +16,7 @@ import { FeatureCollection, GeoJson } from '../../models/map';
 export class MapContainerComponent implements OnInit {
 
   map: mapboxgl.Map;
-  style = 'mapbox://styles/mapbox/streets-v11';
+  style = environment.style_path;
   lat = 32.71511592010708;
   lng = -97.40416574486872;
   zoom = 12;
@@ -59,14 +59,9 @@ export class MapContainerComponent implements OnInit {
     mapboxgl.accessToken = environment.mapbox.accessToken;
   }
 
-  async ngOnInit(): Promise<void> {
-    await this.getData();
+   ngOnInit(): void {
+    this.DATA = this.mapService.LIST;
     this.initMap();
-  }
-
-  async getData() {
-    this.DATA = await this.mapService.getList();
-    console.log(this.DATA);
   }
 
   initMap() {

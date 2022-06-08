@@ -24,7 +24,11 @@ isLoading:boolean = false;
     this.mapService.getValue().subscribe((value) => {
       this.isLoading = value;
     });
+    this.getData();
+  }
 
+  public async getData() {
+     await this.mapService.getList();
   }
 
 }
