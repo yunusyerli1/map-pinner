@@ -1,11 +1,11 @@
-<div class="sidebar">
+<div class="sidebar" *ngIf="!isLoading">
   <div class="row">
     <div class="col-12 ">
-      <div class="d-flex gap-2 bg-secondary p-2 mb-3">
+      <div class="d-flex gap-2 bg-custom p-2 mb-3">
         <img src="../../../assets/svg/user-circle.svg" width="40x" height="40px">
-        <div class="d-flex flex-column">
-          <span class="text-white">{{DATA?.agentInfo?.firstname}} {{DATA?.agentInfo?.lastname}}</span>
-          <span class="fs-12 text-muted">{{DATA?.agentInfo?.company}}</span>
+        <div class="d-flex flex-column text-white">
+          <span>{{DATA?.agentInfo?.firstname}} {{DATA?.agentInfo?.lastname}}</span>
+          <span class="fs-12">{{DATA?.agentInfo?.company}}</span>
         </div>
       </div>
 
@@ -20,4 +20,8 @@
 
     </div>
   </div>
+</div>
+
+<div *ngIf="isLoading">
+  <app-loading></app-loading>
 </div>

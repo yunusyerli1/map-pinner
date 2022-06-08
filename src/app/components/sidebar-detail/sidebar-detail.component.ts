@@ -12,6 +12,7 @@ export class SidebarDetailComponent implements OnInit {
 
   DETAIL:any;
   property_id: number;
+  isLoading:boolean = false;
 
   constructor(private route: ActivatedRoute, private dataService:DataService) {
     this.property_id= this.route.snapshot.params.id;
@@ -23,7 +24,9 @@ export class SidebarDetailComponent implements OnInit {
 
   async getData() {
     console.log(this.property_id)
+    this.isLoading = true;
     this.DETAIL = await this.dataService.getDetail(this.property_id);
+    this.isLoading = false;
     console.log("DETAIL",this.DETAIL);
   }
 }

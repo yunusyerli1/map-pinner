@@ -10,8 +10,10 @@ export class HomeComponent implements OnInit {
 
 isLoading:boolean = false;
 
-  constructor(private dataService: DataService,private ref: ChangeDetectorRef) {
-  }
+  constructor(
+    private dataService: DataService,
+    private ref: ChangeDetectorRef
+    ) {}
 
   ngAfterContentChecked() {
     this.ref.detectChanges();

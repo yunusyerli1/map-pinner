@@ -52,8 +52,8 @@ export class MapContainerComponent implements OnInit {
     private renderer : Renderer2) {
   }
 
-   ngOnInit(): void {
-    this.DATA = this.dataService.LIST;;
+   async ngOnInit(): Promise<void> {
+    this.DATA = await this.dataService.getList();
     this.mapboxService.initMap();
     this.addMarkers();
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -9,17 +10,22 @@ import { DataService } from 'src/app/services/data.service';
 export class SidebarComponent implements OnInit {
 
   DATA:any;
+  isLoading:boolean = false;
 
-  constructor(private dataService: DataService,) { }
+  constructor(private dataService: DataService,private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit(): void {
-    this.getData();
     //this.DATA = this.dataService.LIST;
+    this.getData();
   }
 
   async getData() {
+    this.isLoading = true;
     this.DATA =  await this.dataService.getList();
-    console.log("List", this.DATA)
+    this.isLoading = false;
   }
+
+
 
 }

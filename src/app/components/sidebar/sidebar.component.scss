@@ -1,27 +1,32 @@
 .sidebar {
   max-height: 100vh;
-        overflow: scroll;
-        overflow-x: hidden;
-        &::-webkit-scrollbar {
-            width: 5px;
-          }
-          &::-webkit-scrollbar-track {
-            box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  overflow: scroll;
+  overflow-x: hidden;
+  .bg-custom {
+    background-color:#1976d2;
+  }
+  &::-webkit-scrollbar {
+      width: 5px;
+    }
+    &::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
 
-          }
-          &::-webkit-scrollbar-thumb {
-            background-color: #A8A8AD;
-            border-radius: 51px;
-          }
-          &::-webkit-scrollbar-thumb:hover {
-            background: #8E8E8F;
-          }
-          &::-webkit-scrollbar-thumb {
-            background-color: #a8a8ad;
-            border-radius: 51px;
-          }
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: #A8A8AD;
+      border-radius: 51px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: #8E8E8F;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: #a8a8ad;
+      border-radius: 51px;
+    }
 
-          &::-webkit-scrollbar-thumb:hover {
-            background: #8e8e8f;
-          }
+    &::-webkit-scrollbar-thumb:hover {
+      background: #8e8e8f;
+    }
 }
+
+
