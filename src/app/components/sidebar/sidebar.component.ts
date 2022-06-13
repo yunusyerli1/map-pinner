@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -12,11 +11,9 @@ export class SidebarComponent implements OnInit {
   DATA:any;
   isLoading:boolean = false;
 
-  constructor(private dataService: DataService,private route: ActivatedRoute,
-    private router: Router) { }
+  constructor(private dataService: DataService,) { }
 
   ngOnInit(): void {
-    //this.DATA = this.dataService.LIST;
     this.getData();
   }
 
