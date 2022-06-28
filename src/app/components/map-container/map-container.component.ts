@@ -1,8 +1,8 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
-import { FeatureCollection, GeoJson } from '../../models/map';
 import { MapboxService } from 'src/app/services/mapbox.service';
 import { DataService } from 'src/app/services/data.service';
+import { FeatureCollection } from 'src/app/models/map';
 
 
 @Component({
@@ -16,35 +16,8 @@ import { DataService } from 'src/app/services/data.service';
 export class MapContainerComponent implements OnInit {
 
   DATA:any;
+  features:any =[];
   ZOOM:number= 16;
-
-  geojson = {
-    type: 'FeatureCollection',
-    features: [
-      {
-        type: 'Feature',
-        geometry: {
-          type: 'Point',
-          coordinates: [-93.2056, 33.4056]
-        },
-        properties: {
-          title: 'Mapbox',
-          description: 'Washington, D.C.'
-        }
-      },
-      {
-        type: 'Feature',
-        geometry: {
-          type: 'Point',
-          coordinates: [39.4056, 35.2056]
-        },
-        properties: {
-          title: 'Mapbox',
-          description: 'San Francisco, California'
-        }
-      }
-    ]
-  };
 
   constructor(
     private dataService: DataService,
@@ -53,12 +26,21 @@ export class MapContainerComponent implements OnInit {
   }
 
    async ngOnInit(): Promise<void> {
-    this.DATA = await this.dataService.getList();
+    this.DATA = await this.mapboxService.getData();
+    console.log(this.DATA);
     this.mapboxService.initMap();
-    this.addMarkers();
+
+    this.setCenter();
+    this.setMarkers();
   }
 
-  addMarkers() {
+
+
+  setCenter() {
+
+  }
+
+  setMarkers() {
     // add markers to map
    for (const feature of this.DATA?.records) {
      // create a HTML element for each feature

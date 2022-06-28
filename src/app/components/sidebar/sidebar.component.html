@@ -11,10 +11,7 @@
 
       <div class="d-flex flex-column card-hover px-3">
         <a class="cpointer mb-3 text-body"  [routerLink]="item.propertyID" *ngFor="let item of DATA?.records">
-          <app-card-item [estate]="item">
-
-          </app-card-item>
-
+          <app-card-item [estate]="item"></app-card-item>
         </a>
       </div>
 

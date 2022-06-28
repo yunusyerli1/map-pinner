@@ -1,14 +1,54 @@
+<div *ngIf="isLoading">
+  <app-loading></app-loading>
+</div>
 <div class="sidebar" *ngIf="!isLoading">
   <div class="row">
     <div class="col-12 ">
-      <div class="d-flex gap-2 bg-custom p-2 mb-3">
+      <div class="d-flex gap-2 bg-custom p-2">
         <a routerLink="/"><img src="../../../assets/svg/arrow-left.svg" height="24px"><span class="text-white">Back To Results</span></a>
+      </div>
+      <img [src]="DETAIL?.photos[0]" [alt]="DETAIL?.city" width="100%" class="sidebar-image">
+      <div class="d-flex ">
+        <app-detail-photos [images]="DETAIL?.photos"></app-detail-photos>
+      </div>
+      <div class="d-flex justify-content-around  py-4" *ngIf="DETAIL?.phone">
+        <a class="d-flex flex-column" href="tel:${{DETAIL?.phone}}" *ngIf="DETAIL?.phone">
+          <img src="../../../assets/svg/phone.svg" height="24px">
+          <span class="text-white">CALL</span>
+        </a>
+        <a class="d-flex flex-column" href="mailto:${{DETAIL?.email}}" *ngIf="DETAIL?.email">
+          <img src="../../../assets/svg/envelope.svg" height="24px">
+          <span class="text-white">EMAIL</span>
+        </a>
+        <a class="d-flex flex-column" [href]="DETAIL?.website" target="_blank" *ngIf="DETAIL?.website">
+          <img src="../../../assets/svg/globe.svg" height="24px" >
+          <span class="text-white">WEBSITE</span>
+        </a>
+      </div>
+      <div class="d-flex flex-column mt-2">
+        <div class="card d-flex flex-row align-items-center gap-4 p-2 m-2" *ngFor="let plan of DETAIL?.floorplans">
+          <div class="d-flex flex-row gap-2">
+            <img src="../../../../assets/svg/bed.svg" alt="single bed" height="22px" *ngIf="plan.bed == 1">
+            <img src="../../../../assets/svg/bed-double.svg" alt="single bed" height="22px" *ngIf="plan.bed == 2">
+            <span class="fs-12">{{plan.bed}} Bed, {{plan.bath}} Bath</span>
+          </div>
+          <div class="d-flex align-items-center">
+            <img src="../../../../assets/svg/dollar-alt.svg" alt="single bed" height="22px">
+            <div class="d-flex flex-column  fs-12">
+              <span>{{plan.price | number}}$</span>
+              <span>{{plan.priceMax | number}}$</span>
+            </div>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <img src="../../../../assets/svg/vector-square-alt.svg" alt="single bed" height="22px">
+            <span class="fs-12">{{plan.sqft}} sqft</span>
+          </div>
+
+        </div>
       </div>
 
     </div>
   </div>
 </div>
 
-<div *ngIf="isLoading">
-  <app-loading></app-loading>
-</div>
+

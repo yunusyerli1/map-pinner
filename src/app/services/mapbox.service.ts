@@ -1,50 +1,41 @@
 import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
 import { environment } from '../../environments/environment';
 import * as mapboxgl from 'mapbox-gl';
+import { GeoJson } from '../models/map';
+import { DataService } from './data.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MapboxService {
 
-
+  DATA:any;
+  features:any = [];
   map: mapboxgl.Map;
   style = environment.style_path;
-  lat = 32.71511592010708;
-  lng = -97.40416574486872;
+  lat:number;
+  lng:number;
   zoom = 12;
 
-  geojson = {
-    type: 'FeatureCollection',
-    features: [
-      {
-        type: 'Feature',
-        geometry: {
-          type: 'Point',
-          coordinates: [-93.2056, 33.4056]
-        },
-        properties: {
-          title: 'Mapbox',
-          description: 'Washington, D.C.'
-        }
-      },
-      {
-        type: 'Feature',
-        geometry: {
-          type: 'Point',
-          coordinates: [39.4056, 35.2056]
-        },
-        properties: {
-          title: 'Mapbox',
-          description: 'San Francisco, California'
-        }
-      }
-    ]
-  };
-
-  constructor() {
+  constructor(private dataService: DataService) {
     mapboxgl.accessToken = environment.mapbox.accessToken;
+
   }
+
+  async getData() {
+   let result =  await this.dataService.getList();
+   this.lat = result.records[0].geocode.Latitude;
+   this.lng = result.records[0].geocode.Longitude;
+   return result;
+  }
+
+  setGeoJSON() {
+    this.DATA.records.forEach(el => {
+      const feature = {"type": "FeatureCollection","properties": {},"geometry": {"type": "Point","coordinates": [el.geocode.Longitude, el.geocode.Latitude]}};
+      this.features.push(feature);
+    })
+    console.log(this.features);
+}
 
 
 
@@ -56,16 +47,23 @@ export class MapboxService {
       style: this.style,
     })
 
+    this.map.on('load', () => {
+      //this.addSource();
+      this.addLayers();
+    });
     this.addControls();
     //this.addMarkers();
-    this.addLayers();
+
+
   }
 
-  addLayers() {
-    // this.map.addLayer({
-
-    // });
-  }
+  // addSource() {
+  //   this.map.addSource('earthquakes', {
+  //     type: 'geojson',
+  //     // Use a URL for the value for the `data` property.
+  //     data: 'https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson'
+  //     });
+  // }
 
   addControls() {
     //Adding map controls
@@ -78,15 +76,56 @@ export class MapboxService {
       trackUserLocation: true,
       showUserHeading: true
       }));
-      // const newButton = this.renderer.createElement('button');
-        // const buttonText =this.renderer.createText('Değiştir');
-        // this.renderer.appendChild(newButton, buttonText);
-        // this.map.addControl(newButton, 'top-right');
+  }
 
-        // this.map.fitBounds([
-        //   [-77.03238901390978, 38.913188059745586],
-        //   [-78.03238901390978, 39.913188059745586]
-        // ]);
+  //  flyTo(data: GeoJson) {
+  //    this.map.flyTo({
+  //      center: data.geometry.coordinates
+  //    })
+  //  }
+
+  addLayers() {
+    // this.map.addLayer({
+    //   id: 'customMarketid',
+    //   source: 'customMarker',
+    //   type: 'symbol',
+    //   layout: {
+    //     'text-field': '{message}',
+    //     'text-size': 24,
+    //     'text-transform': 'uppercase',
+    //     'icon-image': 'marker-15',
+    //     'text-offset': [0, 1.5]
+    //   },
+    //   paint: {
+    //     'text-color': '#f16624',
+    //     'text-halo-color': '#fff',
+    //     'text-halo-width': 2
+    //   }
+    // });
+
+    //   // Add a black outline around the polygon.
+    //   this.map.addLayer({
+    //   'id': 'outline',
+    //   'type': 'line',
+    //   'source': 'maine',
+    //   'layout': {},
+    //   'paint': {
+    //   'line-color': '#000',
+    //   'line-width': 3
+    //   }
+    //   });
+
+    // this.map.addLayer({
+    //   'id': 'earthquakes-layer',
+    //   'type': 'circle',
+    //   'source': 'earthquakes',
+    //   'paint': {
+    //   'circle-radius': 8,
+    //   'circle-stroke-width': 2,
+    //   'circle-color': 'red',
+    //   'circle-stroke-color': 'white'
+    //   }
+    //   });
   }
 
 

@@ -12,6 +12,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CardItemComponent } from './components/sidebar/card-item/card-item.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { SidebarDetailComponent } from './components/sidebar-detail/sidebar-detail.component';
+import { DetailPhotosComponent } from './components/detail-photos/detail-photos.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { SidebarDetailComponent } from './components/sidebar-detail/sidebar-deta
     CardItemComponent,
     LoadingComponent,
     SidebarDetailComponent,
+    DetailPhotosComponent
   ],
   imports: [
     BrowserModule,
