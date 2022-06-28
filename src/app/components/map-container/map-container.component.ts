@@ -2,7 +2,7 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import { MapboxService } from 'src/app/services/mapbox.service';
 import { DataService } from 'src/app/services/data.service';
-import { FeatureCollection } from 'src/app/models/map';
+import { ZoomTypes } from '../../constants/ZoomTypes';
 
 
 @Component({
@@ -53,14 +53,14 @@ export class MapContainerComponent implements OnInit {
        pinnedMap.setPopup(
            new mapboxgl.Popup({ offset: 25 }) // add popups
              .setHTML(
-               `<div style="padding:0.1rem 0.5rem;">
+               `<a style="padding:0.1rem 0.5rem;">
                <h5>${feature?.name}</h5>
                <img src="${feature?.photo}" width="200px"><br>
                <span>${feature?.city}, ${feature?.state}</span>
                <p>${feature?.streetAddress}</p>
-               </div>`
+               </a>`
              )).addTo(this.mapboxService.map);
-             this.mapboxService.map.flyTo({center: arr, zoom: this.ZOOM});
+             this.mapboxService.map.flyTo({center: arr, zoom: ZoomTypes.POINT_ZOOM});
        });
    }
  }

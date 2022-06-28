@@ -1,8 +1,8 @@
-import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import * as mapboxgl from 'mapbox-gl';
-import { GeoJson } from '../models/map';
 import { DataService } from './data.service';
+import { ZoomTypes } from '../constants/ZoomTypes';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,6 @@ export class MapboxService {
   style = environment.style_path;
   lat:number;
   lng:number;
-  zoom = 12;
 
   constructor(private dataService: DataService) {
     mapboxgl.accessToken = environment.mapbox.accessToken;
@@ -43,7 +42,7 @@ export class MapboxService {
     this.map = new mapboxgl.Map({
       container: 'map',
       center: [this.lng, this.lat],
-      zoom: this.zoom,
+      zoom: ZoomTypes.DEFAULT_ZOOM,
       style: this.style,
     })
 
