@@ -78,11 +78,13 @@ export class MapboxService {
       }));
   }
 
-  //  flyTo(data: GeoJson) {
-  //    this.map.flyTo({
-  //      center: data.geometry.coordinates
-  //    })
-  //  }
+
+    flyTo(zoom:number, data?) {
+      this.map.flyTo({
+        center: data,
+        zoom:zoom
+      })
+    }
 
   addLayers() {
     // this.map.addLayer({

@@ -1,7 +1,8 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs/internal/Subscription';
 import { DataService } from 'src/app/services/data.service';
+import { MapboxService } from 'src/app/services/mapbox.service';
+import { ZoomTypes } from '../../constants/ZoomTypes'
 
 @Component({
   selector: 'app-sidebar-detail',
@@ -15,7 +16,7 @@ export class SidebarDetailComponent implements OnInit {
   isLoading:boolean = false;
   photos:any;
 
-  constructor(private route: ActivatedRoute, private dataService:DataService) {
+  constructor(private route: ActivatedRoute, private dataService:DataService, private mapboxService: MapboxService) {
     this.property_id= this.route.snapshot.params.id;
   }
 
@@ -29,5 +30,9 @@ export class SidebarDetailComponent implements OnInit {
 
     this.isLoading = false;
     console.log("DETAIL",this.DETAIL);
+  }
+
+  flyToDefault() {
+    this.mapboxService.flyTo(ZoomTypes.DEFAULT_ZOOM);
   }
 }

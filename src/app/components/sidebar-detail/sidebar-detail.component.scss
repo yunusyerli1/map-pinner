@@ -9,3 +9,13 @@
   }
 
 }
+.custom-position {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 999999;
+  .btn-close {
+    color: #fff !important;
+    opacity: 1;
+  }
+}

@@ -13,6 +13,7 @@ import { CardItemComponent } from './components/sidebar/card-item/card-item.comp
 import { LoadingComponent } from './components/loading/loading.component';
 import { SidebarDetailComponent } from './components/sidebar-detail/sidebar-detail.component';
 import { DetailPhotosComponent } from './components/detail-photos/detail-photos.component';
+import { ImageSliderComponent } from './components/image-slider/image-slider.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { DetailPhotosComponent } from './components/detail-photos/detail-photos.
     CardItemComponent,
     LoadingComponent,
     SidebarDetailComponent,
-    DetailPhotosComponent
+    DetailPhotosComponent,
+    ImageSliderComponent
   ],
   imports: [
     BrowserModule,
