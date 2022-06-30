@@ -14,6 +14,9 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { SidebarDetailComponent } from './components/sidebar-detail/sidebar-detail.component';
 import { DetailPhotosComponent } from './components/detail-photos/detail-photos.component';
 import { ImageSliderComponent } from './components/image-slider/image-slider.component';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,8 @@ import { ImageSliderComponent } from './components/image-slider/image-slider.com
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    StoreModule.forRoot({}, {}),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [],
   bootstrap: [AppComponent]
