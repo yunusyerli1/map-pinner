@@ -17,6 +17,9 @@ import { ImageSliderComponent } from './components/image-slider/image-slider.com
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { hotelReducer } from './store/hotel.reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { HotelsEffects } from './store/hotel.effects';
 
 @NgModule({
   declarations: [
@@ -35,8 +38,9 @@ import { environment } from '../environments/environment';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({"hotels": hotelReducer}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    EffectsModule.forRoot([HotelsEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent]
